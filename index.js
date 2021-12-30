@@ -63,6 +63,35 @@ app.get('/movies/read', (req, res) => {
   res.send({status:200, data:movies})
 })
 
+app.get('/movies/read/by-date', (req,res) =>{
+
+  let result = movies.sort(function (a, b) {
+  
+    return a.year - b.year })
+  
+  res.send({status:200,data:result})
+})
+
+app.get('/movies/read/by-rating', (req,res) =>{
+ 
+
+let result = movies.sort(function (a, b) {
+  
+  return b.rating - a.rating})
+
+res.send({status:200,data:result})
+})
+
+app.get('/movies/read/by-title', (req,res) =>{
+ 
+
+  let result = movies.sort(function (a, b) {
+    
+  
+    return a.title.localeCompare(b.title)})
+  
+  res.send({status:200,data:result})
+})
 app.get('/movies/update', (req, res) => {
 
 })
