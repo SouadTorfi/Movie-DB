@@ -1,13 +1,14 @@
 
 const express = require('express')
+const req = require('express/lib/request')
 const app = express()
 const port = 3000
 
 const movies = [
-  { title: 'Jaws', year: 1975, rating: 8 },
-  { title: 'Avatar', year: 2009, rating: 7.8 },
-  { title: 'Brazil', year: 1985, rating: 8 },
-  { title: 'الإرهاب والكباب', year: 1992, rating: 6.2 }
+  {title: 'Jaws', year: 1975, rating: 8 },
+  {title: 'Avatar', year: 2009, rating: 7.8 },
+  {title: 'Brazil', year: 1985, rating: 8 },
+  {title: 'الإرهاب والكباب', year: 1992, rating: 6.2 }
   
 ]
 
@@ -92,6 +93,25 @@ app.get('/movies/read/by-title', (req,res) =>{
   
   res.send({status:200,data:result})
 })
+
+
+app.get('/movies/read/id/:id', (req,res) =>{
+
+if(req.params.id){
+  if((req.params.id) >= 0 && req.params.id < movies.length){
+      res.send({status:200, data: movies[req.params.id]})
+  }
+  else{
+      res.send({status:404, error:true, message:'the movie '+req.params.id +' does not exist'})
+    
+  }
+}
+
+})
+
+
+  
+
 app.get('/movies/update', (req, res) => {
 
 })
