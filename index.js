@@ -55,9 +55,6 @@ app.get(['/search','/search/:data'], (req, res) => {
   }
 });
 
-app.get('/movies/add', (req, res) => {
-
-})
 
 app.get('/movies/read', (req, res) => {
 
@@ -136,7 +133,7 @@ app.get('/movies/update', (req, res) => {
 
 })
 
-app.get('/movies/delete', (req, res) => {
+app.get('/movies/delete/id/:id', (req, res) => {
 
 })
 
