@@ -102,7 +102,7 @@ if(req.params.id){
       res.send({status:200, data: movies[req.params.id]})
   }
   else{
-      res.send({status:404, error:true, message:'the movie '+req.params.id +' does not exist'})
+    res.send({status:404, error:true, message:'the movie '+req.params.id +' does not exist'})
     
   }
 }
@@ -110,7 +110,27 @@ if(req.params.id){
 })
 
 
-  
+app.get("/movies/add", (req, res) => {
+  const title = req.query.title;
+  const year = req.query.year;
+  const rating = req.query.rating;
+
+  if ( title == null,  isNaN(year),  typeof year === "undefined"  ,year.toString().length != 4) 
+  {
+    res.send({status: 403,error: true,message: "you cannot create a movie without title and a year"});
+  } 
+  else if (rating == "" , typeof rating === "undefined") 
+  {
+    var lenght = 4;
+    movies.push({title: title,year: year,rating: length,});
+    res.send(movies);
+  } 
+
+  movies.push({title: title,year: year,rating: rating });
+  res.send({status: 200,data: movies})
+})
+
+
 
 app.get('/movies/update', (req, res) => {
 
