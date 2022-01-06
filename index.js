@@ -130,8 +130,25 @@ app.get("/movies/add", (req, res) => {
 
 });
 
-app.get('/movies/update', (req, res) => {
+app.get('/movies/update/:id', (req, res) => {
+  const Title = req.query.title;
+  const Year = req.query.year;
+  const Rating = req.query.rating;
+  var Index = parseInt(req.params.id)
+  if (Title != undefined) {
 
+    movies[Index].title = Title;
+  }
+  if (Year == "") {
+
+    movies[Index].year = Year;
+  }
+  if (Rating != undefined) {
+
+    movies[Index].rating = Number(Rating);
+  }
+
+  res.send({ status: 200, data: movies });
 })
 
 app.get('/movies/delete/id/:id', (req, res) => {
@@ -140,8 +157,8 @@ app.get('/movies/delete/id/:id', (req, res) => {
 
   if (req.params.id) {
     if ((req.params.id) >= 0 && req.params.id < movies.length) {
-      var Index =parseInt(req.params.id)
-     // var Index = movies.indexOf([req.params.id]);
+      var Index = parseInt(req.params.id)
+      // var Index = movies.indexOf([req.params.id]);
 
       movies.splice(Index, 1);
 
@@ -151,7 +168,7 @@ app.get('/movies/delete/id/:id', (req, res) => {
       res.send({ status: 404, error: true, message: 'the movie ' + req.params.id + ' does not exist' })
 
     }
-  } 
+  }
 
 
 })
