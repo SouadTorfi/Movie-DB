@@ -136,11 +136,9 @@ app.get('/movies/update/:id', (req, res) => {
   const Rating = req.query.rating;
   var Index = parseInt(req.params.id)
   if (Title != undefined) {
-
     movies[Index].title = Title;
   }
   if (Year == "") {
-
     movies[Index].year = Year;
   }
   if (Rating != undefined) {
