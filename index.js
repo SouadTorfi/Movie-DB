@@ -1,8 +1,10 @@
 
 const express = require('express')
-const req = require('express/lib/request')
+//const req = require('express/lib/request')
 const app = express()
 const port = 3002
+
+
 
 const movies = [
   { title: 'Jaws', year: 1975, rating: 8 },
@@ -110,7 +112,8 @@ app.get('/movies/read/id/:id', (req, res) => {
 })
 
 
-app.get("/movies/add", (req, res) => {
+app.post("/movies/add", (req, res) => {
+
   const title = req.query.title;
   const year = req.query.year;
   const rating = req.query.rating;
@@ -130,7 +133,7 @@ app.get("/movies/add", (req, res) => {
 
 });
 
-app.get('/movies/update/:id', (req, res) => {
+app.put('/movies/update/:id', (req, res) => {
   const Title = req.query.title;
   const Year = req.query.year;
   const Rating = req.query.rating;
@@ -149,7 +152,7 @@ app.get('/movies/update/:id', (req, res) => {
   res.send({ status: 200, data: movies });
 })
 
-app.get('/movies/delete/id/:id', (req, res) => {
+app.delete('/movies/delete/id/:id', (req, res) => {
 
 
 
